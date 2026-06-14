@@ -10,4 +10,12 @@ elif [ "$1" == "build_reporter" ]; then
     docker build -t analyser_image ./data_analyser
 elif [ "$1" == "run_reporter" ]; then
     docker run --rm -v "$(pwd)/data:/data" analyser_image
+elif [ "$1" == "structure" ]; then
+    tree -L 2
+elif [ "$1" == "clear_data" ]; then
+    rm -rf data/*
+elif [ "$1" == "inside_generator" ]; then
+    docker run --rm -v "$(pwd)/data:/data" generator_image ls -la /data
+elif [ "$1" == "inside_reporter" ]; then
+    docker run --rm -v "$(pwd)/data:/data" analyser_image ls -la /data
 fi
